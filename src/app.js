@@ -23,3 +23,4 @@ app.listen(8080, () => {
   console.log("Servidor escuchando en el puerto 8080");
 });
 
+//http://localhost:8080/products?limit=10
