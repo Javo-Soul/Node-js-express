@@ -1,26 +1,17 @@
 const express = require("express");
-const fs = require("fs");
 const app = express();
-const products = JSON.parse(fs.readFileSync("src/products.json"));
-app.get("/products", (req, res) => {
-  const limit = req.query.limit;
-  if (limit) {
-    res.json(products.slice(0, limit));
-  } else {
-    res.json(products);
-  }
-});
-app.get("/products/:pid", (req, res) => {
-  const pid = req.params.pid;
-  const product = products.find((p) => p.id === pid);
-  if (!product) {
-    res.status(404).json({ error: "Producto no encontrado" });
-  } else {
-    res.json(product);
-  }
-});
-app.listen(8080, () => {
-  console.log("Servidor escuchando en el puerto 8080");
+const PORT = 8080;
+
+const productRouter = require('./routers/products.router');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/api', productRouter);
+
+
+app.listen(PORT, () => {
+  console.log(`Server running in http://localhost:${PORT} 🚀`);
 });
 
 //http://localhost:8080/products?limit=10
