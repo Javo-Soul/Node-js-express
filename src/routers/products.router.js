@@ -1,8 +1,10 @@
-const fs = require("fs");
-const products = JSON.parse(fs.readFileSync("src/routers/products.json"));
+import { Router } from 'express';
+import fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
-const { Router } = require('express');
 const router = Router();
+const path = 'src/routers/products.json'
+const products = JSON.parse(fs.readFileSync("src/routers/products.json"));
 
 router.get("/products", (req, res) => {
   const limit = req.query.limit;
@@ -16,7 +18,7 @@ router.get("/products", (req, res) => {
 router.post('/products', (req, res) =>{
   const {body} = req;
   const newProduct = {
-      id : products.length + 1,
+      id : uuidv4(),
       ...body,
   };
   products.push(newProduct);
@@ -63,4 +65,7 @@ router.delete('/products/:uid', (req, res) => {
   res.status(200).json({ message: 'El usuario se elimino correctamente 😅', userDeleted: user });
 });
 
-module.exports = router;
+export default router;
+
+
+// module.exports = router;

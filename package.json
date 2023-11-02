@@ -1,19 +1,20 @@
 {
-  "name": "router-demo",
-  "version": "0.0.1",
-  "description": "Esta es una prueba de router en express js",
-  "main": "src/app.js",
+  "name": "socket.io-demo",
+  "version": "1.0.0",
+  "description": "Proyecto node js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "start": "node .",
     "dev": "nodemon ."
   },
-  "keywords": [
-    "router",
-    "express"
-  ],
+  "keywords": [],
   "author": "Coder House",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1"
   }
 }
